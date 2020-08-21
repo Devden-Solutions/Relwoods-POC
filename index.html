@@ -20,18 +20,38 @@
     <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
 
     <script src="https://unpkg.com/resize-observer-polyfill@1.5.1/dist/ResizeObserver.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
     <link rel="stylesheet" href="ContainerStyle.css" />
   </head>
   <body>
     <model-viewer src="./chair.glb" shadow-intensity="0.1" ar camera-controls alt="A 3D model carousel">
   
+  <h1 class="ml8">
+  <span class="letters-container">
+    <span class="letters letters-left"style="text-align: center; display: inline-block;">ABC Corp.</span>
+  </span>
+  <span class="circle circle-white"></span>
+  <span class="circle circle-dark"></span>
+  <span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
+</h1>
+  
   <button slot="ar-button" id="ar-button">
     View in your space
   </button>
+	
+	
+	
+<!-- 	/* <div id ="IndustryName">
+  <p> XYZ Industries</p>
+	</div> */ -->
 
-  
-
+	<div class="SaleButtons">
+	<button class="BuyNow">Buy Now</button>
+	<button class="AddToCart">Add To Cart</button>
+	</div>
+	
   <div class="slider">
     <div class="slides">
       <button class="slide selected" onclick="switchSrc(this, 'chair')" style="display: inline-block;">Chair</button>
@@ -56,6 +76,53 @@
     // Keep slider interactions from affecting the XR scene.
     ev.preventDefault();
   });
+  
+  anime.timeline({loop: true})
+  .add({
+    targets: '.ml8 .circle-white',
+    scale: [0, 3],
+    opacity: [1, 0],
+    easing: "easeInOutExpo",
+    rotateZ: 360,
+    duration: 1100
+  }).add({
+    targets: '.ml8 .circle-container',
+    scale: [0, 1],
+    duration: 1100,
+    easing: "easeInOutExpo",
+    offset: '-=1000'
+  }).add({
+    targets: '.ml8 .circle-dark',
+    scale: [0, 1],
+    duration: 1100,
+    easing: "easeOutExpo",
+    offset: '-=600'
+  }).add({
+    targets: '.ml8 .letters-left',
+    scale: [0, 0.5],
+    duration: 1200,
+    offset: '-=550'
+  }).add({
+    targets: '.ml8 .bang',
+    scale: [0, 1],
+    rotateZ: [45, 15],
+    duration: 1200,
+    offset: '-=1000'
+  }).add({
+    targets: '.ml8',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 6000
+  });
+
+anime({
+  targets: '.ml8 .circle-dark-dashed',
+  rotateZ: 360,
+  duration: 8000,
+  easing: "linear",
+  loop: true
+});
 </script>
 
 <style>
@@ -69,6 +136,15 @@
     --poster-color: #eee;
   }
 
+  #IndustryName{
+  color:#4215f4;
+  font-family: Roboto Regular, Helvetica Neue, sans-serif;
+  position: absolute;
+  display: inline-block;
+  left: 50px;
+  
+  }
+  
   #ar-button {
     background-repeat: no-repeat;
     background-size: 20px 20px;
@@ -171,6 +247,112 @@
     outline: 1px solid #4285f4;
   }
 
+  .BuyNow {
+  padding: 15px 25px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  position: fixed;
+     top: 25px;
+    right: 10px;
+  background-color: #9A673A;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+
+.BuyNow:active {
+ 
+  background-color: #733D1C;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+ .AddToCart {
+  padding: 15px 25px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+   position: fixed;
+     top: 100px;
+    right: 10px;
+  background-color: #9A673A;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.AddToCart:active {
+  background-color: #733D1C;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+  
+  
+  h1.ml8 {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff;
+  width: 3em;
+  height: 3em;
+  left: 10px;
+   position: absolute;
+}
+
+.ml8 .letters-container {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 5px;
+  bottom: 0;
+  height: 1em;
+}
+
+.ml8 .letters {
+position: relative;
+  z-index: 2;
+  
+}
+
+
+.ml8 .circle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
+
+.ml8 .circle-white {
+  width: 1em;
+  height: 1em;
+  border: 1px dashed #DBB090;
+  border-radius: 3em;
+}
+
+.ml8 .circle-dark {
+  width: 2.2em;
+  height: 2.2em;
+  background-color: #89B547;
+  border-radius: 2.4em;
+  z-index: 1;
+}
+
+.ml8 .circle-dark-dashed {
+  border-radius: 2.4em;
+  background-color: transparent;
+  border: 2px dashed #9A673A;
+  width: 2.3em;
+  height: 2.3em;
+}
+  
 </style>
   </body>
 </html>
