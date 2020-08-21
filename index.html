@@ -54,8 +54,8 @@
 	
   <div class="slider">
     <div class="slides">
-      <button class="slide selected" onclick="switchSrc(this, 'chair')" style="display: inline-block;">Chair</button>
-	  <button class="slide" onclick="switchSrc(this, 'table')" style="display: inline-block;">Table</button>
+      <button class="slide selected" onclick="switchSrc(this, 'chair')" style="display: inline-block; font-size: 12px;">Chair</button>
+	  <button class="slide" onclick="switchSrc(this, 'table')" style="display: inline-block; font-size: 12px;">Table</button>
 	  
 	  </div>
   </div>
@@ -148,7 +148,7 @@ anime({
     bottom: 100px;
 	display: inline-block;
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     color:#4285f4;
     height: 36px;
     line-height: 36px;
@@ -240,14 +240,15 @@ anime({
   }
 
   .BuyNow {
-  padding: 10px 20px;
-  font-size: 13px;
+  z-index:10;
+  padding: 8px 18px;
+  font-size: 11px;
   text-align: center;
   cursor: pointer;
   outline: none;
   color: #fff;
   position: fixed;
-     top: 25px;
+     bottom: 56px;
     right: 10px;
   background-color: #9A673A;
   border: none;
@@ -264,14 +265,15 @@ anime({
 }
 
  .AddToCart {
-  padding: 10px 20px;
-  font-size: 13px;
+  z-index:10;
+  padding: 8px 18px;
+  font-size: 11px;
   text-align: center;
   cursor: pointer;
   outline: none;
   color: #fff;
    position: fixed;
-     top: 70px;
+     bottom: 18px;
     right: 10px;
   background-color: #9A673A;
   border: none;
@@ -292,7 +294,7 @@ anime({
   color: #fff;
   width: 3em;
   height: 3em;
-  left: 5px;
+  right: 5px;
   top: -0.5em;
    position: absolute;
 }
@@ -339,6 +341,7 @@ position: relative;
 }
 
 .ml8 .circle-dark-dashed {
+right:1px;
   border-radius: 2.4em;
   background-color: transparent;
   border: 2px dashed #9A673A;
